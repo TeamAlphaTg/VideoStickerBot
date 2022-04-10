@@ -12,7 +12,7 @@ class BotAPI:
     new_pack_url = f"{base_url}createNewStickerSet"
     get_pack_url = f"{base_url}getStickerSet"
     add_to_pack_url = f"{base_url}addStickerToSet"
-    ERROR = "Oops, an error occurred. My owner has been notified. \n\nFor queries visit @StarkBotsChat"
+    ERROR = "Oops, an error occurred. My owner has been notified. \n\nFor queries visit @TrTechGuide"
     username = requests.get(base_url + "getMe").json()["result"]["username"]
     PACK_NAME = "fpack_{}_by_" + username
     NEW_PACK_NAME = "fpack{}_{}_by_" + username
@@ -65,7 +65,7 @@ class BotAPI:
             await self.error(resp, params['name'])
         except TooManyRequests as e:
             msg = self.message
-            err = f"Error from Telegram \n\n{e.desc} \n\nFor queries visit @StarkBotsChat"
+            err = f"Error from Telegram \n\n{e.desc} \n\nFor queries visit @TrTechGuide"
             await msg.reply(err, quote=True)
             await self.client.send_message(
                 self.LOG_CHAT,
@@ -77,7 +77,7 @@ class BotAPI:
             total_packs = await database.get('users', self.user_id, 'packs')
             if not total_packs:  # Just in Case
                 total_packs = 1
-            await self.status.edit('Oh. Your pack {} is full. Lemme create a new one for you :)'.format(total_packs))
+            await self.status.edit('Oh. Your pack {} is full. Let me create a new one for you'.format(total_packs))
             total_packs += 1
             pack_name = self.NEW_PACK_NAME.format(total_packs, self.user_id)
             params.update({'name': pack_name})
