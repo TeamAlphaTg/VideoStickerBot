@@ -49,7 +49,7 @@ class Helpers(BotAPI):
         status = await emojis_msg.reply('Inspecting Input...')
         emojis = await self.extract_emojis(emojis_msg)
         if not emojis:
-            await status.edit('Invalid Emojis. Process Cancelled.')
+            await status.edit('❌❌Invalid Emojis. Process Cancelled.❌❌')
             return None
         await self.status.delete()
         self.status = status
